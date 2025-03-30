@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Song, Comment } from '../types/types';
+import { Song } from '../types/types';
 
 interface SongDetailsProps {
   song: Song;

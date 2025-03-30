@@ -55,7 +55,7 @@ export default function SongsList({
   };
 
   // Now this will open the details popup instead of playing the song
-  const handleCardClick = (song: Song, e: React.MouseEvent) => {
+  const handleCardClick = (song: Song) => {
     setSelectedDetailsSong(song);
   };
   
@@ -84,7 +84,7 @@ export default function SongsList({
           <div 
             key={song.id} 
             className={`song-card ${currentSongId === song.id ? 'active' : ''}`}
-            onClick={(e) => handleCardClick(song, e)}
+            onClick={() => handleCardClick(song)}
             onMouseEnter={() => setHoveredSongId(song.id)}
             onMouseLeave={() => setHoveredSongId(null)}
           >
