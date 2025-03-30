@@ -15,7 +15,24 @@ const mockSongs: Song[] = [
     imageUrl: 'https://picsum.photos/seed/electric1/300/300',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
     createdAt: '2025-03-15T10:30:00Z',
-    duration: 187
+    duration: 187,
+    likes: 42,
+    comments: [
+      {
+        id: 'c1',
+        userId: 'u123',
+        username: 'synthwave_lover',
+        text: 'This track really captures that nostalgic 80s feel!',
+        timestamp: '2025-03-16T14:22:00Z'
+      },
+      {
+        id: 'c2',
+        userId: 'u456',
+        username: 'melody_master',
+        text: 'The chord progression in this is so good, very atmospheric.',
+        timestamp: '2025-03-18T09:11:00Z'
+      }
+    ]
   },
   {
     id: '2',
@@ -24,7 +41,17 @@ const mockSongs: Song[] = [
     imageUrl: 'https://picsum.photos/seed/ocean2/300/300',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
     createdAt: '2025-03-20T14:45:00Z',
-    duration: 213
+    duration: 213,
+    likes: 37,
+    comments: [
+      {
+        id: 'c3',
+        userId: 'u789',
+        username: 'chillout_fan',
+        text: 'Perfect for my meditation sessions. So calming!',
+        timestamp: '2025-03-21T18:33:00Z'
+      }
+    ]
   },
   {
     id: '3',
@@ -33,7 +60,24 @@ const mockSongs: Song[] = [
     imageUrl: 'https://picsum.photos/seed/urban3/300/300',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
     createdAt: '2025-03-25T09:15:00Z',
-    duration: 162
+    duration: 162,
+    likes: 28,
+    comments: [
+      {
+        id: 'c4',
+        userId: 'u101',
+        username: 'beatmaker99',
+        text: 'Those drums are fire! Would love to hear a remix.',
+        timestamp: '2025-03-26T10:45:00Z'
+      },
+      {
+        id: 'c5',
+        userId: 'u202',
+        username: 'jazz_enthusiast',
+        text: 'Great blend of modern beats with classic jazz samples!',
+        timestamp: '2025-03-27T15:20:00Z'
+      }
+    ]
   },
   {
     id: '4',
@@ -42,7 +86,17 @@ const mockSongs: Song[] = [
     imageUrl: 'https://picsum.photos/seed/midnight4/300/300',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
     createdAt: '2025-03-28T22:00:00Z',
-    duration: 234
+    duration: 234,
+    likes: 19,
+    comments: [
+      {
+        id: 'c6',
+        userId: 'u303',
+        username: 'night_owl',
+        text: 'This has become my go-to late night study music.',
+        timestamp: '2025-03-29T01:12:00Z'
+      }
+    ]
   },
   {
     id: '5',
@@ -51,7 +105,24 @@ const mockSongs: Song[] = [
     imageUrl: 'https://picsum.photos/seed/cosmic5/300/300',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
     createdAt: '2025-03-29T16:20:00Z',
-    duration: 197
+    duration: 197,
+    likes: 24,
+    comments: [
+      {
+        id: 'c7',
+        userId: 'u404',
+        username: 'space_traveler',
+        text: 'Feels like I\'m floating through the galaxy. Amazing soundscape!',
+        timestamp: '2025-03-30T08:05:00Z'
+      },
+      {
+        id: 'c8',
+        userId: 'u505',
+        username: 'electronic_dreams',
+        text: 'The synth work on this is incredible. What VSTs did you use?',
+        timestamp: '2025-03-30T11:30:00Z'
+      }
+    ]
   }
 ];
 
@@ -78,6 +149,8 @@ function App() {
         audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // Placeholder audio
         createdAt: new Date().toISOString(),
         duration: 180, // 3 minutes
+        likes: 0,
+        comments: []
       };
       
       const updatedSongs = [newSong, ...songs];
@@ -125,6 +198,40 @@ function App() {
     }
   };
 
+  // Handle liking a song
+  const handleLikeSong = (songId: string) => {
+    setSongs(prevSongs => {
+      return prevSongs.map(song => {
+        if (song.id === songId) {
+          return { ...song, likes: song.likes + 1 };
+        }
+        return song;
+      });
+    });
+  };
+
+  // Handle adding a comment to a song
+  const handleAddComment = (songId: string, text: string) => {
+    setSongs(prevSongs => {
+      return prevSongs.map(song => {
+        if (song.id === songId) {
+          const newComment = {
+            id: `c${Date.now()}`,
+            userId: 'current-user', // In a real app, this would be the actual user ID
+            username: 'you', // In a real app, this would be the actual username
+            text,
+            timestamp: new Date().toISOString()
+          };
+          return { 
+            ...song, 
+            comments: [newComment, ...song.comments]
+          };
+        }
+        return song;
+      });
+    });
+  };
+
   // Load songs from backend when component mounts
   useEffect(() => {
     // In a real implementation, this would fetch songs from your backend
@@ -150,6 +257,8 @@ function App() {
               songs={songs} 
               onSongSelect={handleSongSelect}
               currentSongId={currentSong?.id}
+              onLikeSong={handleLikeSong}
+              onAddComment={handleAddComment}
             />
           </div>
         </section>

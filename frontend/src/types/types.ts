@@ -6,6 +6,16 @@ export interface Song {
   audioUrl: string;
   createdAt: string;
   duration: number;
+  likes: number;
+  comments: Comment[];
+}
+
+export interface Comment {
+  id: string;
+  userId: string;
+  username: string;
+  text: string;
+  timestamp: string;
 }
 
 export interface GenerationOptions {

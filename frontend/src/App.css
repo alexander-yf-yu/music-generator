@@ -587,3 +587,311 @@ body {
     padding: 0.8rem;
   }
 }
+
+/* Song Details Popup */
+.song-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.song-details-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  padding: 1.5rem;
+  animation: fadeInScale 0.3s ease-out;
+  z-index: 1000;
+}
+
+.song-details-header {
+  display: flex;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.song-details-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.song-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.song-details-info {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.song-details-info h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.song-description {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.song-created-date {
+  color: #999;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.song-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.like-button:hover {
+  transform: scale(1.05);
+  background-color: rgba(124, 77, 255, 0.1);
+}
+
+.comments-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+  font-size: 1rem;
+}
+
+.song-comments {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+  text-align: left;
+}
+
+.song-comments h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+.comments-list {
+  margin-bottom: 1.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.comment {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.comment-username {
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: left;
+}
+
+.comment-time {
+  font-size: 0.8rem;
+  color: #999;
+  text-align: right;
+}
+
+.comment-text {
+  color: #333;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.no-comments {
+  color: #999;
+  text-align: center;
+  padding: 1rem;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: left;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.comment-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.comment-form button {
+  align-self: flex-end;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.comment-form button:hover {
+  background-color: var(--secondary-color);
+}
+
+.comment-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments for song details popup */
+@media (max-width: 768px) {
+  .song-details-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .song-details-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .song-social {
+    justify-content: center;
+  }
+}
+
+.song-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.song-social-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.song-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.song-stat svg {
+  color: var(--primary-color);
+}
+
+.song-info-button {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.song-info-button:hover {
+  color: var(--primary-color);
+  transform: scale(1.1);
+  background-color: rgba(124, 77, 255, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 10;
+}
+
+.close-button:hover {
+  color: var(--primary-color);
+}
