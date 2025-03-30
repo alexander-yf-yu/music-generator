@@ -8,7 +8,51 @@ import { Song, GenerationOptions } from './types/types';
 
 // Mock data for development (will be replaced with API calls)
 const mockSongs: Song[] = [
-  // This will be populated from the backend
+  {
+    id: '1',
+    title: 'Electric Dreams',
+    description: 'Synth Wave with retro vibes',
+    imageUrl: 'https://picsum.photos/seed/electric1/300/300',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    createdAt: '2025-03-15T10:30:00Z',
+    duration: 187
+  },
+  {
+    id: '2',
+    title: 'Ocean Whispers',
+    description: 'Ambient sounds with peaceful melodies',
+    imageUrl: 'https://picsum.photos/seed/ocean2/300/300',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+    createdAt: '2025-03-20T14:45:00Z',
+    duration: 213
+  },
+  {
+    id: '3',
+    title: 'Urban Jungle',
+    description: 'Hip-hop beats with jazzy elements',
+    imageUrl: 'https://picsum.photos/seed/urban3/300/300',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+    createdAt: '2025-03-25T09:15:00Z',
+    duration: 162
+  },
+  {
+    id: '4',
+    title: 'Midnight Serenade',
+    description: 'Smooth jazz with piano solos',
+    imageUrl: 'https://picsum.photos/seed/midnight4/300/300',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
+    createdAt: '2025-03-28T22:00:00Z',
+    duration: 234
+  },
+  {
+    id: '5',
+    title: 'Cosmic Voyage',
+    description: 'Space-themed electronic music',
+    imageUrl: 'https://picsum.photos/seed/cosmic5/300/300',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
+    createdAt: '2025-03-29T16:20:00Z',
+    duration: 197
+  }
 ];
 
 function App() {
